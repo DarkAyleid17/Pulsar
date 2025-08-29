@@ -20,7 +20,7 @@ Pulsar/
 Prerequisites
 
 Swift 6.1 or later
-CMake 3.29 or later
+CMake 4.00 or later
 Platform-specific build tools
 # Building on Linux:
 ## Using Swift Package Manager
@@ -34,11 +34,6 @@ make
 # Building on Windows:
 ## Using Swift Package Manager (requires Swift for Windows)
 swift build -c release
-
-## Or using CMake with Visual Studio
-mkdir build && cd build
-cmake .. -G "Visual Studio 17 2022"
-cmake --build . --config Release
 
 
 # Key Features of the Swift Rewrite:
