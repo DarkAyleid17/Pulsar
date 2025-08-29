@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.1.1)
+cmake_minimum_required(VERSION 4.0.0)
 project(Pulsar LANGUAGES Swift)
 
 # Set Swift compiler flags for Swift 6.1

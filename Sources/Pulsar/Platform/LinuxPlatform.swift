@@ -11,17 +11,17 @@ struct LinuxPlatform: PlatformProtocol {
         system("stty cbreak -echo")
         
         // Hide cursor for cleaner display
-        print("\u{001B}[?25l", terminator: "")
+        Swift.print("\u{001B}[?25l", terminator: "")
         fflush(stdout)
     }
     
     func clearScreen() {
-        print("\u{001B}[2J", terminator: "")
+        Swift.print("\u{001B}[2J", terminator: "")
         fflush(stdout)
     }
     
     func setCursorPosition(x: Int, y: Int) {
-        print("\u{001B}[\(y + 1);\(x + 1)H", terminator: "")
+        Swift.print("\u{001B}[\(y + 1);\(x + 1)H", terminator: "")
         fflush(stdout)
     }
     
@@ -80,7 +80,18 @@ struct LinuxPlatform: PlatformProtocol {
     deinit {
         // Restore terminal settings
         system("stty sane")
-        print("\u{001B}[?25h") // Show cursor
+        Swift.print("\u{001B}[?25h") // Show cursor
     }
+}
+#else
+// Fallback for non-Linux platforms
+struct LinuxPlatform: PlatformProtocol {
+    func clearScreen() {}
+    func setCursorPosition(x: Int, y: Int) {}
+    func getChar() -> String { return "" }
+    func getInputNonBlocking() -> String? { return nil }
+    func print(_ text: String) {}
+    func getCurrentTime() -> Double { return 0 }
+    func sleep(duration: Double) async {}
 }
 #endif
